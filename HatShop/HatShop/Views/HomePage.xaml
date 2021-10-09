@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HatShop.Views.HomePage"
+             xmlns:viewmodels="clr-namespace:HatShop.ViewModels" 
+             xmlns:model="clr-namespace:HatShop.Models"
+             x:DataType="viewmodels:HomeViewModel"
+             xmlns:local="clr-namespace:HatShop"
+             Title="HAT SHOP">
+
+    <ContentPage.BindingContext>
+        <viewmodels:HomeViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <ListView
+        HasUnevenRows="True"
+        SeparatorVisibility="None"
+        BackgroundColor="Transparent"
+        ItemsSource="{Binding Hat}">
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:Hat">
+                <ViewCell>
+                    <Grid Padding="5">
+                        <StackLayout>
+                            <Frame CornerRadius="20"
+                                   HasShadow="True">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image  Source="{Binding Image}"
+                                            WidthRequest="66"/>
+                                    <StackLayout VerticalOptions="Center">
+                                        <Label VerticalOptions="Center"
+                                               FontSize="Large"
+                                               Text="{Binding Style}"/>
+                                        <Label VerticalOptions="Center"
+                                               FontSize="Medium"
+                                               Text="{Binding Price}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.Header>
+            <StackLayout>
+                <Image Source="banner1.jpg"/>
+                <Grid Padding="10">
+                    <Button Text="Baseball Cap"/>
+                    <Button Text="Beanie"
+                            Grid.Column="1"/>
+                    <Button Text="Fedora"
+                            Grid.Column="2"/>
+                    <Button Text="Beret"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"/>
+                    <Button Text="Bicorne"
+                            Grid.Row="1"
+                            Grid.Column="2"/>
+                </Grid>
+                <Image Source="banner2.jpg"/>
+                <Label Text="#POPULAR PICKS"
+                       TextColor="Black"
+                       FontSize="Medium"/>
+            </StackLayout>
+        </ListView.Header>
+    </ListView>
+</ContentPage>
